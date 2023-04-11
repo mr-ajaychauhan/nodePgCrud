@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  node_backend:
+    container_name: nodepgcrud
+    image: nodepgcrud:0.0.2
+    build: 
+      context: .
+    ports:
+      - "3002:3002"
+    environment:
+      - EXTERNAL_PORT=3002
