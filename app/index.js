@@ -1,5 +1,9 @@
 const express = require('express');
 
+const sequelize = require('./util/database')
+
+const User = require('./models/users')
+
 
 const app = express();
 
@@ -17,9 +21,17 @@ app.use('/',(req,res) => {
     res.send("You are at Home Screen")
 })
 
-try {
-    app.listen(process.env.EXTERNAL_PORT || 3002);
-    console.log("server is running on 3002");
-} catch (error) {
-    console.log(error);
-}
+app.use('/users',require('./routes/users'))
+
+;(async () =>{
+    try {
+      await sequelize.sync(
+        {force: false}
+      );
+      console.log("test 3002");
+      app.listen(process.env.EXTERNAL_PORT || 3002);
+    } catch (error) {
+      console.error(error);
+    }
+  })()
+
