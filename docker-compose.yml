@@ -3,7 +3,7 @@ version: '3.8'
 services:
   node_backend:
     container_name: nodepgcrud
-    image: nodepgcrud:0.0.3
+    image: nodepgcrud:0.0.4
     build: 
       context: .
     ports:
